@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import {
   FaGithub,
   FaLinkedin,
-  FaTwitter,
   FaLaptopCode,
   FaLightbulb,
   FaBicycle,
@@ -10,15 +9,22 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaWhatsapp,
+  FaFacebook,
+  FaExternalLinkAlt
 } from 'react-icons/fa';
+
 import { saveAs } from 'file-saver';
 import { gsap } from 'gsap';
 import { Player } from '@lottiefiles/react-lottie-player';
 
-import profileImg from './assets/profile-image.jpg'; // Replace with your image path
-import logo from './assets/logo.png'; // Replace with your logo path
-import devAnimation from './assets/developer-animation.json'; // Replace with your Lottie JSON path
-import projectImg from './assets/1.jpg'; // Replace with your project image path
+import profileImg from './assets/profile-image.jpg'; 
+import logo from './assets/logo.png'; 
+import devAnimation from './assets/developer-animation.json'; 
+import projectImg from './assets/1.jpg'; 
+import Badge from './Components/Badge';
+import ActionLink from './Components/ActionLink';
+import SkillBar from './Components/SkillBar';
+import { SiCss3, SiExpress, SiHtml5, SiJavascript, SiMongodb, SiNextdotjs, SiNodedotjs, SiReact, SiRedux, SiTailwindcss } from 'react-icons/si';
 
 const App = () => {
   const svgRef = useRef(null);
@@ -28,7 +34,7 @@ const App = () => {
   const [displayedText, setDisplayedText] = useState('');
   const fullText = 'Frontend Developer | React Enthusiast';
 
-  // Typing animation & entrance animations
+  
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(heroRef.current, { duration: 1, opacity: 0, y: 60, ease: 'power3.out' });
@@ -57,7 +63,7 @@ const App = () => {
     return () => ctx.revert();
   }, []);
 
-  // Animate SVG paths and about text
+  
   useEffect(() => {
     if (!svgRef.current) return;
     const paths = svgRef.current.querySelectorAll('path');
@@ -76,17 +82,24 @@ const App = () => {
     }
   }, []);
 
-  // Dummy skills data
-  const skills = [
-    { name: 'HTML', level: 90 },
-    { name: 'CSS', level: 85 },
-    { name: 'JavaScript', level: 80 },
-    { name: 'React', level: 85 },
-    { name: 'Node.js', level: 75 },
-    { name: 'MongoDB', level: 70 },
-  ];
+  
+ 
 
-  // Dummy education data
+  
+const skills = [
+  { name: "HTML", icon: <SiHtml5 className="text-orange-500" />, level: 95 },
+  { name: "CSS", icon: <SiCss3 className="text-blue-600" />, level: 90 },
+  { name: "JavaScript", icon: <SiJavascript className="text-yellow-400" />, level: 85 },
+  { name: "React", icon: <SiReact className="text-blue-500" />, level: 90 },
+  { name: "Next.js", icon: <SiNextdotjs className="text-black" />, level: 85 },
+  { name: "Tailwind CSS", icon: <SiTailwindcss className="text-cyan-500" />, level: 92 },
+  { name: "Node.js", icon: <SiNodedotjs className="text-green-600" />, level: 80 },
+  { name: "Express.js", icon: <SiExpress className="text-gray-700" />, level: 78 },
+  { name: "MongoDB", icon: <SiMongodb className="text-green-700" />, level: 83 },
+  { name: "Redux", icon: <SiRedux className="text-purple-600" />, level: 75 },
+];
+
+  
   const education = [
     {
       degree: 'B.Sc. in Computer Science',
@@ -96,7 +109,6 @@ const App = () => {
     },
   ];
 
-  // Dummy experience data
   const experience = [
     {
       role: 'Frontend Developer Intern',
@@ -106,7 +118,7 @@ const App = () => {
     },
   ];
 
-  // Dummy projects data
+
   const projects = [
     {
       name: 'E-Commerce Platform',
@@ -140,16 +152,16 @@ const App = () => {
     },
   ];
 
-  // Resume download handler
+  
   const downloadPDF = () => saveAs('/my-resume.pdf', 'sulayman-kobir-resume.pdf');
 
   return (
     <div className="scroll-smooth font-sans bg-gradient-to-br from-[#EAD8A4] via-white to-[#EAD8A4] text-[#1f2937] min-h-screen">
       {/* Navbar */}
       <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-white/50 backdrop-blur-xl shadow-xl rounded-full max-w-[1200px] w-[90%] px-8 py-4 flex justify-between items-center border border-[#F68537]/30">
-        <img src={logo} alt="Logo" className="w-10 rounded-2xl" />
+        <img src={logo} alt="Logo" className="w-1/8 rounded-2xl" />
         <nav className="hidden md:flex gap-6 font-bold">
-          {['Home', 'About', 'Skills', 'Education', 'Experience', 'Projects', 'Contact'].map((label) => (
+          {['Home', 'Projects',  'About', 'Contact'].map((label) => (
             <a
               key={label}
               href={`#${label.toLowerCase()}`}
@@ -171,7 +183,7 @@ const App = () => {
       <section
         id="home"
         ref={heroRef}
-        className="pt-36 max-w-[1200px] w-[90%] mx-auto flex flex-col md:flex-row items-center justify-between min-h-[90vh]"
+        className="pt-36 max-w-[1200px] min-h-screen  w-[90%] mx-auto flex flex-col md:flex-row items-center justify-between "
       >
         <div ref={textRef} className="space-y-5 max-w-xl">
           <h1 className="text-4xl md:text-6xl font-bold leading-tight">
@@ -182,8 +194,7 @@ const App = () => {
             <span className="animate-pulse">|</span>
           </h2>
           <p className="text-gray-600 mt-4">
-            Creative developer crafting interactive experiences with React, animations, and elegant
-            design.
+            Creative developer crafting interactive experiences with React, NextJs, and Node.
           </p>
           <div className="flex gap-4 mt-4 text-2xl">
             <a
@@ -203,12 +214,12 @@ const App = () => {
               <FaLinkedin />
             </a>
             <a
-              href="https://twitter.com"
+              href="https://facebook.com/sulayman.kobir.24245"
               target="_blank"
               rel="noreferrer"
               className="hover:text-[#F68537] transition-transform hover:scale-125"
             >
-              <FaTwitter />
+              <FaFacebook />
             </a>
           </div>
         </div>
@@ -306,23 +317,19 @@ const App = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="max-w-6xl mx-auto px-6 py-20 scroll-mt-[100px]">
-        <h2 className="text-5xl font-extrabold text-[#F68537] mb-12 text-center">Skills</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {skills.map(({ name, level }) => (
-            <div key={name} className="bg-white rounded-lg p-6 shadow-md">
-              <h3 className="font-semibold text-xl mb-2">{name}</h3>
-              <div className="w-full h-4 bg-gray-300 rounded-full overflow-hidden">
-                <div
-                  className="h-4 bg-[#F68537] rounded-full transition-all duration-700"
-                  style={{ width: `${level}%` }}
-                />
-              </div>
-              <p className="text-right mt-1 text-gray-600">{level}%</p>
-            </div>
-          ))}
-        </div>
-      </section>
+    <section
+      id="skills"
+      className="max-w-6xl mx-auto px-6 py-20 scroll-mt-[100px]"
+    >
+      <h2 className="text-5xl font-extrabold text-[#F68537] mb-12 text-center">
+        Skills
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        {skills.map((skill, idx) => (
+          <SkillBar key={idx} {...skill} />
+        ))}
+      </div>
+    </section>
 
       {/* Education Section */}
       <section id="education" className="max-w-6xl mx-auto px-6 py-20 scroll-mt-[100px]">
@@ -337,86 +344,182 @@ const App = () => {
         ))}
       </section>
 
-      {/* Experience Section */}
-      <section id="experience" className="max-w-6xl mx-auto px-6 py-20 scroll-mt-[100px]">
-        <h2 className="text-5xl font-extrabold text-[#F68537] mb-12 text-center">Experience</h2>
-        {experience.map(({ role, company, period, details }, idx) => (
-          <div key={idx} className="bg-white rounded-lg p-6 shadow-md mb-6">
-            <h3 className="font-semibold text-xl">{role}</h3>
-            <p className="text-gray-600">{company}</p>
-            <p className="text-gray-600 italic">{period}</p>
-            <p className="mt-2">{details}</p>
-          </div>
-        ))}
-      </section>
-
       {/* Projects Section */}
-      <section id="projects" className="max-w-6xl mx-auto px-6 py-20 scroll-mt-[100px]">
-        <h2 className="text-5xl font-extrabold text-[#F68537] mb-12 text-center">Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {projects.map(
-            ({ name, description, image, live, github, stack, challenges, future }, idx) => (
-              <div key={idx} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-                <img src={image} alt={name} className="w-full h-48 object-cover" />
-                <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="font-semibold text-xl mb-2">{name}</h3>
-                  <p className="flex-grow mb-4">{description}</p>
-                  <button
-                    onClick={() => alert(
-                      `Stack: ${stack.join(', ')}\n\nChallenges: ${challenges}\n\nFuture: ${future}\n\nLive: ${live}\nGitHub: ${github}`
-                    )}
-                    className="mt-auto bg-[#F68537] text-white px-4 py-2 rounded hover:bg-[#d96f28] transition"
-                  >
-                    View More / Details
-                  </button>
-                </div>
-              </div>
-            )
-          )}
+       <section id="projects" className="max-w-6xl mx-auto px-6 py-20 scroll-mt-[100px]">
+      <h2 className="text-5xl font-extrabold text-[#F68537] mb-12 text-center">Projects</h2>
+
+      {/* Project 1 */}
+      <div className="flex flex-col md:flex-row items-center bg-white rounded-lg shadow-md overflow-hidden mb-12">
+        <div className="p-6 flex-1">
+          <h3 className="text-2xl font-bold text-[#F68537] mb-2">E-Commerce Platform</h3>
+          <p className="text-gray-700 mb-4">
+            A complete MERN stack e-commerce application with product filtering, shopping cart, payment integration, and admin dashboard.
+          </p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            <Badge tech="React" />
+            <Badge tech="NodeJS" />
+            <Badge tech="Express" />
+            <Badge tech="MongoDB" />
+            <Badge tech="Redux" />
+            <Badge tech="Tailwind" />
+          </div>
+          <div className="flex gap-4">
+            <ActionLink href="https://ecommerce.example.com" label="Live Site" icon={<FaExternalLinkAlt />} />
+            <ActionLink href="https://github.com/yourusername/ecommerce" label="GitHub" icon={<FaGithub />} outline />
+          </div>
         </div>
-      </section>
+        <img
+          src="/images/ecommerce.jpg"
+          alt="E-Commerce Project"
+          className="w-full md:w-[40%] h-60 object-cover"
+        />
+      </div>
+
+      {/* Project 2 */}
+      <div className="flex flex-col md:flex-row items-center bg-white rounded-lg shadow-md overflow-hidden mb-12">
+        <div className="p-6 flex-1">
+          <h3 className="text-2xl font-bold text-[#F68537] mb-2">Roommate Finder Web App</h3>
+          <p className="text-gray-700 mb-4">
+            A social app to find compatible roommates using location filters, preferences, chat, and like system.
+          </p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            <Badge tech="React" />
+            <Badge tech="NodeJS" />
+            <Badge tech="Express" />
+            <Badge tech="MongoDB" />
+            <Badge tech="Tailwind" />
+          </div>
+          <div className="flex gap-4">
+            <ActionLink href="https://roommate.example.com" label="Live Site" icon={<FaExternalLinkAlt />} />
+            <ActionLink href="https://github.com/yourusername/roommate-finder" label="GitHub" icon={<FaGithub />} outline />
+          </div>
+        </div>
+        <img
+          src="/images/roommate.jpg"
+          alt="Roommate Finder"
+          className="w-full md:w-[40%] h-60 object-cover"
+        />
+      </div>
+
+      {/* Project 3 */}
+      <div className="flex flex-col md:flex-row items-center bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="p-6 flex-1">
+          <h3 className="text-2xl font-bold text-[#F68537] mb-2">Portfolio Website</h3>
+          <p className="text-gray-700 mb-4">
+            A modern personal portfolio with light/dark themes, smooth animations, and responsive sections for showcasing work.
+          </p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            <Badge tech="NextJS" />
+            <Badge tech="Tailwind" />
+            <Badge tech="React" />
+          </div>
+          <div className="flex gap-4">
+            <ActionLink href="https://portfolio.example.com" label="Live Site" icon={<FaExternalLinkAlt />} />
+            <ActionLink href="https://github.com/yourusername/portfolio" label="GitHub" icon={<FaGithub />} outline />
+          </div>
+        </div>
+        <img
+          src="/images/portfolio.jpg"
+          alt="Portfolio Website"
+          className="w-full md:w-[40%] h-60 object-cover"
+        />
+      </div>
+    </section>
 
       {/* Contact Section */}
       <section
-        id="contact"
-        className="max-w-6xl mx-auto px-6 py-20 scroll-mt-[100px] bg-white rounded-lg shadow-md mb-20"
-      >
-        <h2 className="text-5xl font-extrabold text-[#F68537] mb-12 text-center">Contact Me</h2>
-        <div className="flex flex-col md:flex-row gap-10 justify-center text-gray-700">
-          <div className="flex items-center gap-4">
-            <FaEnvelope className="text-[#F68537] text-3xl" />
-            <div>
-              <h4 className="font-semibold text-xl">Email</h4>
-              <a href="mailto:your.email@example.com" className="hover:text-[#F68537]">
-                your.email@example.com
-              </a>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <FaPhoneAlt className="text-[#F68537] text-3xl" />
-            <div>
-              <h4 className="font-semibold text-xl">Phone</h4>
-              <a href="tel:+1234567890" className="hover:text-[#F68537]">
-                +1 234 567 890
-              </a>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <FaWhatsapp className="text-[#F68537] text-3xl" />
-            <div>
-              <h4 className="font-semibold text-xl">WhatsApp</h4>
-              <a href="https://wa.me/1234567890" target="_blank" rel="noreferrer" className="hover:text-[#F68537]">
-                +1 234 567 890
-              </a>
-            </div>
+      id="contact"
+      className="max-w-6xl mx-auto px-6 py-20 scroll-mt-[100px] bg-white rounded-lg shadow-md "
+    >
+      <h2 className="text-5xl font-extrabold text-[#F68537] mb-12 text-center">
+        Contact Me
+      </h2>
+
+      {/* Contact Details */}
+      <div className="flex flex-col md:flex-row gap-10 justify-center text-gray-700 mb-16">
+        <div className="flex items-center gap-4">
+          <FaEnvelope className="text-[#F68537] text-3xl" />
+          <div>
+            <h4 className="font-semibold text-xl">Email</h4>
+            <a href="mailto:your.email@example.com" className="hover:text-[#F68537]">
+              sulayman.kobir@gmail.com
+            </a>
           </div>
         </div>
-      </section>
+        <div className="flex items-center gap-4">
+          <FaPhoneAlt className="text-[#F68537] text-3xl" />
+          <div>
+            <h4 className="font-semibold text-xl">Phone</h4>
+            <a href="tel:+1234567890" className="hover:text-[#F68537]">
+              +8801521703982
+            </a>
+          </div>
+        </div>
+        <div className="flex items-center gap-4">
+          <FaWhatsapp className="text-[#F68537] text-3xl" />
+          <div>
+            <h4 className="font-semibold text-xl">WhatsApp</h4>
+            <a
+              href="https://wa.me/1234567890"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[#F68537]"
+            >
+              +8801981322331
+            </a>
+          </div>
+        </div>
+      </div>
 
-      {/* Footer */}
-      <footer className="bg-[#F68537] text-white text-center py-6">
-        <p>© {new Date().getFullYear()} Sulayman Kobir. All rights reserved.</p>
-      </footer>
+      {/* Contact Form */}
+      <form className="max-w-2xl mx-auto grid grid-cols-1 gap-6">
+        <div>
+          <label className="block text-gray-700 font-semibold mb-1" htmlFor="name">
+            Name
+          </label>
+          <input
+            id="name"
+            type="text"
+            required
+            placeholder="Your Name"
+            className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F68537]"
+          />
+        </div>
+
+        <div>
+          <label className="block text-gray-700 font-semibold mb-1" htmlFor="email">
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            required
+            placeholder="Your Email"
+            className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F68537]"
+          />
+        </div>
+
+        <div>
+          <label className="block text-gray-700 font-semibold mb-1" htmlFor="message">
+            Message
+          </label>
+          <textarea
+            id="message"
+            rows="5"
+            required
+            placeholder="Your Message"
+            className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F68537]"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-[#F68537] text-white font-semibold py-3 rounded-md hover:bg-[#e57025] transition-colors duration-300"
+        >
+          Send Message
+        </button>
+      </form>
+    </section>
     </div>
   );
 };
