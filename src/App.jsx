@@ -1,16 +1,18 @@
-import { Outlet } from "react-router"
+
+
 import Header from "./Components/Header"
+import Home from "./Components/Home"
 
 
 function App() {
   
 
   return (
-   <>
+   <div className="montserrat-regular">
     <Header/>
-    <Outlet/>
-    <Footer/>
-   </>
+    <Home/>
+  
+   </div>
   )
 }
 
