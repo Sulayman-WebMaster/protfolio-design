@@ -10,7 +10,6 @@ import {
   FaPhoneAlt,
   FaWhatsapp,
   FaFacebook,
-  FaExternalLinkAlt
 } from 'react-icons/fa';
 
 import { saveAs } from 'file-saver';
@@ -26,6 +25,7 @@ import SkillBar from './Components/SkillBar';
 import { SiCss3, SiExpress, SiHtml5, SiJavascript, SiMongodb, SiNextdotjs, SiNodedotjs, SiReact, SiRedux, SiTailwindcss } from 'react-icons/si';
 import CustomCursor from './Components/CustomCursor';
 import TypingText from './Components/TypingText';
+import Projects from './Components/Projects';
 
 const App = () => {
   const svgRef = useRef(null);
@@ -340,8 +340,12 @@ const App = () => {
         </div>
       </section>
 
+      
+      {/* Projects Section */}
+      <Projects/>
+
       {/* Education Section */}
-      <section id="education" className="max-w-6xl mx-auto px-6 py-20 scroll-mt-[100px]">
+      <section id="education" className="max-w-6xl mx-auto px-6 py-12 scroll-mt-[100px]">
         <h2 className="text-5xl font-extrabold text-[#F68537] mb-12 text-center">Education</h2>
         {education.map(({ degree, institution, year, details }, idx) => (
           <div key={idx} className="bg-white rounded-lg p-6 shadow-md mb-6">
@@ -353,90 +357,6 @@ const App = () => {
         ))}
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="max-w-6xl mx-auto px-6 py-24 scroll-mt-[100px]">
-        <h2 className="text-5xl font-extrabold text-[#F68537] mb-16 text-center">Projects</h2>
-
-        {/* Project 1 */}
-        <div className="flex flex-col md:flex-row items-center bg-white rounded-3xl shadow-lg overflow-hidden mb-16 border border-gray-200">
-          <div className="p-8 flex-1">
-            <h3 className="text-3xl font-bold text-[#F68537] mb-4">Shikhun</h3>
-            <p className="text-gray-700 mb-6 leading-relaxed">
-              Shikhun is a Course Management System that allows users to create, manage, and enroll in courses.
-              It features user authentication, course creation, and a responsive design for seamless learning experiences.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              <Badge tech="React" />
-              <Badge tech="NodeJS" />
-              <Badge tech="Express" />
-              <Badge tech="MongoDB" />
-              <Badge tech="Tailwind" />
-              <Badge tech="Shadcn" />
-            </div>
-            <div className="flex gap-4">
-              <ActionLink href="https://dynamic-bubblegum-7473c9.netlify.app/" label="Live Site" icon={<FaExternalLinkAlt />} />
-              <ActionLink href="https://github.com/Sulayman-WebMaster/course-management-app" label="GitHub" icon={<FaGithub />} outline />
-            </div>
-          </div>
-          <img
-            src="https://i.postimg.cc/FH9VHM49/3001.png"
-            alt="Shikhun"
-            className="w-full md:w-[45%] h-[320px] object-cover"
-          />
-        </div>
-
-        {/* Project 2 */}
-        <div className="flex flex-col md:flex-row items-center bg-white rounded-3xl shadow-lg overflow-hidden mb-16 border border-gray-200">
-          <div className="p-8 flex-1">
-            <h3 className="text-3xl font-bold text-[#F68537] mb-4">BD Room</h3>
-            <p className="text-gray-700 mb-6 leading-relaxed">
-              A roommate finder application with user authentication, profile management, and real-time chat functionality.
-              Users can post listings and find compatible roommates based on preferences.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              <Badge tech="React" />
-              <Badge tech="NodeJS" />
-              <Badge tech="Express" />
-              <Badge tech="MongoDB" />
-              <Badge tech="Tailwind" />
-            </div>
-            <div className="flex gap-4">
-              <ActionLink href="https://endearing-llama-97aa36.netlify.app/" label="Live Site" icon={<FaExternalLinkAlt />} />
-              <ActionLink href="https://github.com/Sulayman-WebMaster/room-mate-finder-webapp" label="GitHub" icon={<FaGithub />} outline />
-            </div>
-          </div>
-          <img
-            src="https://i.postimg.cc/Hk7vg4WH/300.png"
-            alt="BD Room"
-            className="w-full md:w-[45%] h-[320px] object-cover"
-          />
-        </div>
-
-        {/* Project 3 */}
-        <div className="flex flex-col md:flex-row items-center bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
-          <div className="p-8 flex-1">
-            <h3 className="text-3xl font-bold text-[#F68537] mb-4">Goal!</h3>
-            <p className="text-gray-700 mb-6 leading-relaxed">
-              Goal! is a sports news website that provides the latest updates, scores, and articles on various sports.
-              It features a clean design, user-friendly navigation, and responsive layout for an optimal viewing experience.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              <Badge tech="DaisyUi" />
-              <Badge tech="Tailwind" />
-              <Badge tech="React" />
-            </div>
-            <div className="flex gap-4">
-              <ActionLink href="https://cheerful-meringue-44b588.netlify.app/" label="Live Site" icon={<FaExternalLinkAlt />} />
-              <ActionLink href="https://github.com/Sulayman-WebMaster/sport-web-with-react" label="GitHub" icon={<FaGithub />} outline />
-            </div>
-          </div>
-          <img
-            src="https://i.postimg.cc/3wGXSYjF/35.png"
-            alt="Goal!"
-            className="w-full md:w-[45%] h-[320px] object-cover"
-          />
-        </div>
-      </section>
 
       {/* Contact Section */}
       <section
